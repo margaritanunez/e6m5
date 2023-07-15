@@ -3,11 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/bookFragment">
-
+    app:startDestination="@id/placeFragment">
     <fragment
-        android:id="@+id/bookFragment"
-        android:name="com.example.e6m5.BookFragment"
-        android:label="fragment_book"
-        tools:layout="@layout/fragment_book" />
+        android:id="@+id/placeFragment"
+        android:name="com.example.e6m5.PlaceFragment"
+        android:label="fragment_place"
+        tools:layout="@layout/fragment_place" >
+        <action
+            android:id="@+id/action_placeFragment_to_detalleFragment"
+            app:destination="@id/detalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="com.example.e6m5.DetalleFragment"
+        android:label="fragment_detalle"
+        tools:layout="@layout/fragment_detalle" >
+        <action
+            android:id="@+id/action_detalleFragment_to_placeFragment"
+            app:destination="@id/placeFragment" />
+    </fragment>
 </navigation>
