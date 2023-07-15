@@ -56,9 +56,9 @@ public class PlaceAdapter extends RecyclerView.Adapter <PlaceAdapter.ViewHolder>
         public void showData(Paisaje item) {
             newbinding.placeText.setText(item.getNombre());
             Glide.with(newbinding.getRoot()).load(item.getUrl()).into(newbinding.placeImage);
-            newbinding.placeImage.setOnClickListener(v -> {
+            newbinding.cv.setOnClickListener(v -> {
                 Bundle bundle = new Bundle();
-                bundle.putString("Place Name", item.getNombre());
+                bundle.putString("Name", item.getNombre());
                 bundle.putString("URL", item.getUrl());
                 Navigation.findNavController(newbinding.getRoot()).navigate(R.id.action_placeFragment_to_detalleFragment, bundle);
             });

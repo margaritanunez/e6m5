@@ -3,10 +3,14 @@ package com.example.e6m5;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.bumptech.glide.Glide;
+import com.example.e6m5.databinding.FragmentDetalleBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,11 +18,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class DetalleFragment extends Fragment {
+    private FragmentDetalleBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM1 = "Name";
+    private static final String ARG_PARAM2 = "URL";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -59,6 +64,12 @@ public class DetalleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle, container, false);
+        binding = FragmentDetalleBinding.inflate(getActivity().getLayoutInflater(), container, false);
+        Glide.with(binding.getRoot()).load(mParam2).into(binding.detalleimagen);
+        binding.detalletexto.setText(mParam1);
+        binding.detallebutton.setOnClickListener(v -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_detalleFragment_to_placeFragment);
+        });
+        return binding.getRoot();
     }
 }
